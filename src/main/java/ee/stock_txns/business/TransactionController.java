@@ -23,13 +23,13 @@ public class TransactionController {
 
 
     @PostMapping("/transaction")
-    @Operation(summary = "Lisab uue tehinguinfo vastava konto alla")
+    @Operation(summary = "Adds new transaction info under the corresponding account")
     public void addTransaction(@RequestBody TransactionInfo transactionInfo) {
         transactionService.addTransaction(transactionInfo);
     }
 
     @GetMapping("/transaction")
-    @Operation(summary = "Leiab userId tehingud valitud filtreeringute järgi")
+    @Operation(summary = "Finds userId transactions according to selected filters")
     public List<TransactionResponse> getTransactionsBySorting(@RequestParam @Nullable Integer accountId, @RequestParam Integer
             userId, @Nullable @RequestParam @DateTimeFormat  (iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom,
                                                              @Nullable @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -39,7 +39,7 @@ public class TransactionController {
         return transactionResponses;}
 
         @GetMapping("transaction/account")
-        @Operation(summary = "Toob kõik kontode nimed ja id-d")
+        @Operation(summary = "Get all account names and id-s")
         public List<AccountResponse> getAllAccounts (@RequestParam Integer userId) {
             List<AccountResponse> accountResponses = accountService.findAllAccountsBy(userId);
             return accountResponses;

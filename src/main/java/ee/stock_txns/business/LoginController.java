@@ -16,7 +16,7 @@ public class LoginController {
     UserService userService;
 
     @GetMapping("/login")
-    @Operation(summary = "Logib teenusesse sisse, tagastab userId")
+    @Operation(summary = "Login, returns userId")
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
         LoginResponse loginResponse = userService.login (username, password);
         return loginResponse;
